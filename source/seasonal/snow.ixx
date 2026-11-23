@@ -444,8 +444,13 @@ private:
             else
                 threshold.y = 0.9999f;
 
+            static float snowCoverage = []() { CIniReader ini(""); return ini.ReadFloat("SNOW", "Coverage", 1.0f); }();
+            static float snowNoiseScale = []() { CIniReader ini(""); return ini.ReadFloat("SNOW", "NoiseScale", 2.0f); }();
+            threshold.y *= snowCoverage;
             threshold.y = pow(threshold.y, 0.20f);
             threshold.x = std::max(0.9999f, (threshold.y / (threshold.y + 0.15f)) * 1.15f);
+            threshold.z = snowNoiseScale;
+            threshold.w = 0.0f;
 
             device->SetPixelShaderConstantF(0, &threshold.x, 1);
             device->SetPixelShaderConstantF(1, &projParams.x, 1);
