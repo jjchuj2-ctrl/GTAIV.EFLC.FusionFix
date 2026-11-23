@@ -1522,7 +1522,7 @@ public:
 
         CIniReader d3d9cfg(d3d9cfgPath);
         auto api = d3d9cfg.ReadInteger("MAIN", "API", 0);
-        FusionFixSettings.Set("PREF_GRAPHICSAPI", api);
+        Set("PREF_GRAPHICSAPI", api);
         InitializeMenuAPI();
     }
 public:
