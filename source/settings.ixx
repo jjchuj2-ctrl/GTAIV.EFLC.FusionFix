@@ -4531,7 +4531,7 @@ public:
             return mPrefs[prefID];
         }
     }
-    auto Set(int32_t prefID, int32_t value)
+    void Set(int32_t prefID, int32_t value)
     {
         if (prefID >= firstCustomID)
         {
@@ -4551,7 +4551,7 @@ public:
         if (prefID) { return Get(*prefID); }
         return 0;
     }
-    auto Set(std::string_view name, int32_t value)
+    void Set(std::string_view name, int32_t value)
     {
         auto prefID = GetPrefIDByName(name);
         if (prefID) return Set(*prefID, value);
